@@ -1,0 +1,15 @@
+<table id="table">
+    aaa
+    <tr>
+        <td>Test</td>
+    </tr>
+</table>
+
+<script>
+    console.log(document.body); // the table, as it should be
+    setTimeout(() => {
+        document.body.firstChild.remove();
+        table.remove();
+    }, 2000);
+    // why there's still aaa in the document?
+</script>

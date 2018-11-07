@@ -1,0 +1,24 @@
+<html>
+
+<head title="Create a list from user input"></head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    let div = document.getElementById('root');
+    let inputValue;
+    while (inputValue = prompt("Please input something OR simply cancel.")) {
+        let ol = document.getElementById('olroot');
+        if (!ol) {
+            ol = document.createElement('ol');
+            ol.id = 'olroot';
+            div.appendChild(ol);
+        }
+        let li = document.createElement('li');
+        li.innerText = inputValue;
+        ol.appendChild(li);
+    }
+</script>
+
+</html>

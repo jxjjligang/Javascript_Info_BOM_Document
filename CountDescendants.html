@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+
+<body>
+
+  <ul>
+    <li>Animals
+      <ul>
+        <li>Mammals
+          <ul>
+            <li>Cows</li>
+            <li>Donkeys</li>
+            <li>Dogs</li>
+            <li>Tigers</li>
+          </ul>
+        </li>
+        <li>Other
+          <ul>
+            <li>Snakes</li>
+            <li>Birds</li>
+            <li>Lizards</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>Fishes
+      <ul>
+        <li>Aquarium
+          <ul>
+            <li>Guppy</li>
+            <li>Angelfish</li>
+          </ul>
+        </li>
+        <li>Sea
+          <ul>
+            <li>Sea trout</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    console.log(new Date().toLocaleString());
+    let lis = document.getElementsByTagName('li');
+    let arrayOf = Array.from(lis);
+    arrayOf.forEach(element => {
+      let strings = element.innerText.split('\n').filter(s => s.trim() !== '');
+      if (strings.length > 1)
+        console.log(strings[0] + ': ' + (strings.length - 1) + '.');
+      else if (strings.length == 1)
+        console.log(strings[0] + ' has no children.');
+      else
+        console.log('Edge case: ' +strings);
+    });
+  </script>
+
+</body>
+
+</html>

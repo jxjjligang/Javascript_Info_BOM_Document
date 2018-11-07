@@ -1,0 +1,54 @@
+<html>
+
+<head title="Create a list from user input"></head>
+
+<body>
+    <div id="divRoot">
+        <ul id="ulRoot">
+            <li>Animals
+                <ul>
+                    <li>Mammals
+                        <ul>
+                            <li>Cows</li>
+                            <li>Donkeys</li>
+                            <li>Dogs</li>
+                            <li>Tigers</li>
+                        </ul>
+                    </li>
+                    <li>Other
+                        <ul>
+                            <li>Snakes</li>
+                            <li>Birds</li>
+                            <li>Lizards</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>Fishes
+                <ul>
+                    <li>Aquarium
+                        <ul>
+                            <li>Guppy</li>
+                            <li>Angelfish</li>
+                        </ul>
+                    </li>
+                    <li>Sea
+                        <ul>
+                            <li>Sea trout</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    let lis = document.body.getElementsByTagName('li');
+    for (let li of lis) {
+        let nestedLis = Array.from(li.getElementsByTagName('li'));
+        if (nestedLis.length > 0)
+            li.firstChild.data+= ` [${nestedLis.length}]`;
+    }
+</script>
+
+</html>

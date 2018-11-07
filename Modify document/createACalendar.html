@@ -1,0 +1,80 @@
+<html>
+
+<head title="Create a list from user input"></head>
+
+<body>
+    Input year value (like 2018):
+    <input type="text" id="input_year" value="2018"></input>
+    <br /> Input month value (1 for January, 12 for December):
+    <input type="text" id="input_month" value="11"></input>
+    <br/>
+    <input type="button" value="Click to create calendar" onclick="createCalendar(input_year.value, input_month.value)">
+
+    <br/>
+    <br/>
+    <div id="root"></div>
+</body>
+<script>
+    let div = document.getElementById('root');
+    let year = 2013, month = 9;
+
+    function createCalendar(year, month) {
+        let table = document.createElement('table');
+        table.setAttribute('border', 1);
+
+        table.style.setProperty('border-collapse', 'collapse');
+
+        let tr = document.createElement('tr');
+        let th = document.createElement('th');
+        table.appendChild(tr);
+        let days = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+        days.forEach(day => {
+            let copyOfth = th.cloneNode(true);
+            copyOfth.textContent = day;
+            tr.appendChild(copyOfth);
+        });
+
+        tr = tr.cloneNode();
+        table.appendChild(tr);
+        let dayIndex = 1;
+        let td = document.createElement('td');
+        let tds = [];
+        do {
+            let day = new Date(year, month - 1, dayIndex);
+            if (dayIndex === 1) {
+                let firstDayIndex = (day.getDay() + 6) % 7;
+                while (firstDayIndex > 0) {
+                    tds.push(td.cloneNode());
+                    firstDayIndex--;
+                }
+            }
+
+            if (day.getMonth() === (month - 1)) {
+                let daytd = td.cloneNode();
+                daytd.textContent = dayIndex;
+                tds.push(daytd);
+                dayIndex++;
+            }
+            else
+                break;
+        } while (true)
+        let reminder = (tds.length % 7);
+        if (reminder > 0) {
+            let copiesAmount = 7 - reminder;
+            while (copiesAmount > 0) {
+                tds.push(td.cloneNode());
+                copiesAmount--;
+            }
+        }
+        for (let i = 0; i < tds.length / 7; i++) {
+            let copytr = tr.cloneNode();
+            table.appendChild(copytr);
+            for (let begin = i * 7; begin < i * 7 + 7; begin++)
+                copytr.appendChild(tds[begin]);
+        }
+
+        root.appendChild(table);
+    }
+</script>
+
+</html>

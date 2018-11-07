@@ -1,0 +1,14 @@
+<ol id="elem">
+    <li>Hello</li>
+    <li>World</li>
+</ol>
+
+<script>
+    function clear(elem) {
+        let element = document.getElementById(elem);
+        if (element)
+            element.innerHTML = '';
+    }
+
+    setTimeout(() => clear('elem'), 2000);
+</script>

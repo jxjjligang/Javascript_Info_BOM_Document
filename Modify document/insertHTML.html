@@ -1,0 +1,26 @@
+<html>
+
+<head title="">
+
+</head>
+
+<body>
+    <div id="root">
+        <ul id="ul">
+            <li id="one">1</li>
+            <li id="two">4</li>
+        </ul>
+    </div>
+
+    <script>
+        setTimeout(() => addHTML(), 1000);
+
+        function addHTML() {
+            let ulElement = document.getElementById('ul');
+
+            ul.innerHTML = ul.children[0].outerHTML+ `<li>2</li><li>3</li>`+ ul.children[1].outerHTML;
+        }
+    </script>
+</body>
+
+</html>

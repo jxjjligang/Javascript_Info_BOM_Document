@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head title="A colorful clock">
+</head>
+
+<body>
+    <div id="root">
+        <table>
+            <tr>
+                <td id="time_hour" style="color:red">HH</td>
+                <td>:</td>
+                <td id="time_minute" style="color:green">MM</td>
+                <td>:</td>
+                <td id="time_second" style="color:blue">SS</td>
+            </tr>
+        </table>
+        <input type="button" value="Start" id="startButton" onclick="start()"></input>
+        <input type="button" value="Stop" id="stopButton" onclick="stop()"></input>
+    </div>
+
+    <script>
+        var intervalID;
+        start();
+        function start() {
+            startButton.disabled = true;
+            intervalID = setInterval(refreshTime, 1000)
+        }
+
+        function stop() {
+            startButton.disabled = false;
+            clearInterval(intervalID);
+        }
+
+        function refreshTime() {
+            let dt = new Date();
+            time_hour.textContent = dt.getHours();
+            time_minute.textContent = dt.getMinutes();
+            time_second.textContent = dt.getSeconds();
+        }
+    </script>
+
+</body>
+
+</html>

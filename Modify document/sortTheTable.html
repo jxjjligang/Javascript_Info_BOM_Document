@@ -1,0 +1,71 @@
+<html>
+
+<head title="">
+
+</head>
+
+<body>
+    <div id="root">
+        <table id="table">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>Smith</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>Pete</td>
+                <td>Brown</td>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>Simposon</td>
+                <td>Blare</td>
+                <td>19</td>
+            </tr>
+            <tr>
+                <td>Ann</td>
+                <td>Lee</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Carl</td>
+                <td>Elizbath</td>
+                <td>25</td>
+            </tr>
+            <tr>
+                <td>Rose</td>
+                <td>Bin</td>
+                <td>13</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        setTimeout(() => sortTable(), 1000);
+
+        function sortTable() {
+            let allTrs = Array.from(table.getElementsByTagName('tr'));
+            let firstTr = allTrs[0];
+            let trs = allTrs.slice(1);
+            let names = [];
+            let map = new Map();
+            trs.forEach(tr => {
+                let name = tr.firstElementChild.textContent;
+                names.push(name);
+                map[name] = tr;
+            });
+
+            names.sort().reverse();
+            names.forEach(name => {
+                firstTr.after(map[name]);
+            });
+        }
+    </script>
+</body>
+
+</html>
