@@ -1,0 +1,73 @@
+<html>
+
+<head title="Create tree from data">
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+<script>
+    let data = {
+        "Fish": {
+            "trout": {},
+            "salmon": {}
+        },
+
+        "Tree": {
+            "Huge": {
+                "sequoia": {},
+                "oak": {}
+            },
+            "Flowering": {
+                "redbud": {},
+                "magnolia": {}
+            }
+        }
+    };
+    // visitObject(data, document.getElementById('root'));
+
+    let totalHTML = '';
+    createHTMLFromObject(data);
+    let ulHTML = '<ul>' + totalHTML + '</ul>';
+    let useHTML = false;
+    if (useHTML)
+        setTimeout(() => document.getElementById('root').innerHTML = ulHTML, 2000);
+    else
+        visitObject(data, document.getElementById('root'));
+
+    function visitObject(obj, parent) {
+        let valueVisible = (Object.keys(obj).length > 0);
+        if (valueVisible) {
+            let ul = document.createElement('ul');
+            parent.appendChild(ul);
+            parent = ul;
+        }
+
+        for (let key in obj) {
+            let value = obj[key];
+            let element = document.createElement('li');
+            element.innerHTML = key;
+            parent.appendChild(element);
+            visitObject(value, element);
+        }
+    }
+
+    function createHTMLFromObject(obj) {
+        for (let key in obj) {
+            let value = obj[key];
+            let valueVisible = (Object.keys(value).length > 0);
+
+            if (valueVisible) {
+                totalHTML = totalHTML + `<li>${key}</li><ul>`;
+                createHTMLFromObject(value);
+                totalHTML += '</ul>';
+            }
+            else
+                totalHTML = totalHTML + `<li>${key}</li>`;
+        }
+    }
+
+
+</script>
+
+</html>
