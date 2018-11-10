@@ -49,20 +49,35 @@
             elem.style.position = 'absolute';
             let documentPoint;
             switch (position) {
-                case 'top':
+                case 'top-out':
                     documentPoint = getDocumentCordinate({ x: rect.left, y: rect.top });
                     elem.style.left = documentPoint.x + 'px';
                     elem.style.top = documentPoint.y - elem.offsetHeight + 'px';
                     break;
-                case 'right':
+                case 'top-inside':
+                    documentPoint = getDocumentCordinate({ x: rect.left, y: rect.top });
+                    elem.style.left = documentPoint.x + 'px';
+                    elem.style.top = documentPoint.y + 'px';
+                    break;
+                case 'right-out':
                     documentPoint = getDocumentCordinate({ x: rect.right, y: rect.top });
                     elem.style.left = documentPoint.x + 'px';
                     elem.style.top = documentPoint.y + 'px';
                     break;
-                case 'bottom':
+                case 'right-inside':
+                    documentPoint = getDocumentCordinate({ x: rect.right, y: rect.top });
+                    elem.style.left = documentPoint.x - elem.offsetWidth + 'px';
+                    elem.style.top = documentPoint.y + 'px';
+                    break;
+                case 'bottom-out':
                     documentPoint = getDocumentCordinate({ x: rect.left, y: rect.bottom });
                     elem.style.left = documentPoint.x + 'px';
                     elem.style.top = documentPoint.y + 'px';
+                    break;
+                case 'bottom-inside':
+                    documentPoint = getDocumentCordinate({ x: rect.left, y: rect.bottom });
+                    elem.style.left = documentPoint.x + 'px';
+                    elem.style.top = documentPoint.y - elem.offsetHeight + 'px';
                     break;
                 default:
                     break;
@@ -84,9 +99,12 @@
         // test it
         let blockquote = document.querySelector('blockquote');
 
-        showNote(blockquote, "top", "note above");
-        showNote(blockquote, "right", "note at the right");
-        showNote(blockquote, "bottom", "note below");
+        showNote(blockquote, "top-out", "note above-out");
+        showNote(blockquote, "top-inside", "note above-inside");
+        showNote(blockquote, "right-out", "note at the right-out");
+        showNote(blockquote, "right-inside", "note at the right-inside");
+        showNote(blockquote, "bottom-out", "note below-out");
+        showNote(blockquote, "bottom-inside", "note below-inside");
     </script>
 
 

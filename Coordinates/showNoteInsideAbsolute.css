@@ -7,7 +7,7 @@ body{
   position: fixed;
   z-index: 1000;
   padding: 5px;
-  border: 3px solid black;
+  border: 1px solid blue;
   background: white;
   text-align: center;
   font: italic 14px serif;
