@@ -1,0 +1,85 @@
+<html>
+
+<head title="create Tree Again">
+</head>
+
+<body>
+    <div id="container"></div>
+</body>
+<script>
+    let data = {
+        "Fish": {
+            "trout": {},
+            "salmon": {}
+        },
+
+        "Tree": {
+            "Huge": {
+                "sequoia": {},
+                "oak": {}
+            },
+            "Flowering": {
+                "redbud": {},
+                "magnolia": {}
+            }
+        }
+    };
+    // visitObject(data, document.getElementById('root'));
+
+    let container = document.getElementById('container');
+    let useHTML = false;
+    if (!useHTML)
+        createTree(container, data); // creates the tree in the container
+    else {
+        container.innerHTML = createTreeHTML(data);;
+    }
+
+    let lis = container.firstElementChild.getElementsByTagName('LI');
+    for (let li of lis)
+        {console.log(`${li.textContent}: ${li.getElementsByTagName('LI').length}`);
+        console.log(`${li.textContent}: ${countOfDescendents(li)}`);
+        }
+
+    function createTree(container, data) {
+        if (Object.keys(data).length <= 0)
+            return;
+
+        let ul = document.createElement('ul');
+        container.append(ul);
+        for (let key in data) {
+            let li = document.createElement('li');
+            li.textContent = key;
+            ul.append(li);
+            createTree(li, data[key]);
+        }
+    }
+
+    function createTreeHTML(data) {
+        let partHTML = '';
+        if (Object.keys(data).length <= 0)
+            return;
+
+        partHTML = '<ul>';
+        for (let key in data) {
+            partHTML += `<li>${key}${createTreeHTML(data[key])}</li>`;
+        }
+        partHTML += '</ul>';
+        return partHTML;
+    }
+
+    function countOfDescendents(elem) {
+        let count = 0;
+        if (!elem )
+            return count;
+        if (elem.tagName === 'LI')
+            count++;
+
+        let children = elem.children;
+        for (let child of children)
+            count += countOfDescendents(child);
+        return count;
+    }
+
+</script>
+
+</html>
