@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="findWinCoor.css">
+    <script>
+        document.onclick = function (e) { // shows click coordinates
+            coords.innerHTML = e.clientX + ':' + e.clientY;
+        };
+    </script>
+</head>
+
+<body>
+
+    Click anywhere to get window coordinates.
+    <br> That's for testing, to check the result you get by JavaScript.
+    <br>
+    <div id="coords">(click coordinates show up here)</div>
+
+
+    <div id="field">
+        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </div>
+
+
+    <div class="triangle-right" style="left:-20px;top:-176px">1</div>
+    <div class="triangle-right" style="left:-10px;top:-178px">3</div>
+    <div class="triangle-right" style="left:190px;top:-40px">4</div>
+    <div class="triangle-right" style="left:200px;top:-42px">2</div>
+
+
+    <script>
+        let bRect = field.getBoundingClientRect();
+        console.log(`Upper-left corner, x:${bRect.left}, y:${bRect.top}`);
+        console.log(`Bottom-right corner, x:${bRect.left + bRect.width}, y:${bRect.top + bRect.height}`);
+        console.log('\n');
+
+
+        console.log(`The inner upper-left corner, x:${bRect.left + field.clientLeft}, y:${bRect.top + field.clientTop}`);
+        console.log(`The inner bottom-right corner, x:${bRect.left + field.clientLeft + field.clientWidth}, y:${bRect.top + field.clientTop + field.clientHeight}`);
+
+    </script>
+
+</body>
+
+</html>
